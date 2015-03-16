@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" height="300" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        ////----------------------CIZGISEL LINEAR------------------------------------------------------------------
+        var cizimAlani = tual.getContext("2d");
+       
+
+        //                                  soldan,alttan,sagdan,üstten
+        var cizgiselRenkGecisi = cizimAlani.createLinearGradient(0, 0, 0, 300);
+
+        cizgiselRenkGecisi.addColorStop(0, "black");
+        cizgiselRenkGecisi.addColorStop(0.5, "black");
+        cizgiselRenkGecisi.addColorStop(0.6,"yellow");
+        cizgiselRenkGecisi.addColorStop(1,"red");
+
+        cizimAlani.fillStyle = cizgiselRenkGecisi;
+        cizimAlani.fillRect(0,0,600,300);
+
+        </script>
+</body>
+</html>
