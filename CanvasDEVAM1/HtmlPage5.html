@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <!----------------------------------------------ANIMASYON BASLANGIC-------------------------->
+</head>
+<body>
+    <canvas id="tual" height="600" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        var alan = tual.getContext("2d");
+        var yKoord = 400;
+        var artis = 0.04;
+
+
+        function cizimYap() {
+            //canvas daha once cızılen bır nesneyı ekranda unutur.bunu biz sildirmemiz gereklidir.
+            yKoord += artis;
+            artis += 0.04;
+            if (yKoord+30 >= tual.height) {
+                artis = -artis;
+            }
+
+
+            alan.clearRect(0, 0, 600, 600);
+            alan.beginPath();
+            alan.fillStyle="blue";
+            alan.arc(50, yKoord, 30, 0, 360);
+            alan.closePath();
+            alan.fill();
+
+            setTimeout(cizimYap,20);
+        }
+
+        cizimYap();
+    </script>
+
+
+
+
+
+
+</body>
+</html>
