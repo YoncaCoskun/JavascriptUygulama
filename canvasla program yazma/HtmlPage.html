@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <span id="alan"></span><br />
+    <canvas id="tuval" width=750 height=400 style="border:1px solid black;margin:">Tarayıcınız canvası desteklemiyor</canvas>
+    <script>
+        var tuval;
+        var alan;
+        window.onload = function () {
+            alan = document.getElementById("alan");
+            tuval = document.getElementById("tuval");
+            tuval.onmousemove = mouseHareketi;
+        }
+
+        function mouseHareketi(eventArgument){
+            alan.innerHTML = (parseInt(eventArgument.pageX) - tuval.offsetLeft)+ "x" + (parseInt(eventArgument.pageY) -tuval.offsetTop); //mouse ın tam olarak nerde oldugunu gosterır(mouse un koordınatlarını yazdık)
+             //left ve top kullanmamızın sebebı canvas ıcını koordınatlarının sol ust kısmı sıfırlamak
+        }
+    </script>
+</body>
+</html>

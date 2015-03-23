@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        var sayi = 0;
+        var zamanlayicilar = [];
+
+        function butonClick() {
+            zamanlayicilar.push(setInterval(fonksiyon, 1000));
+
+            //setInterval(fonksiyon, 1000);
+            //setInterval(function () { }, 1000);
+        }
+
+        var fonksiyon = function () {
+            sayi++;
+            lblYazi.innerText = sayi;
+        }
+        function durdur() {
+            for (var i in zamanlayicilar) {
+                clearInterval(zamanlayicilar[i]);
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <input id="Button1" type="button" value="button" onclick="butonClick()" /><br />
+    <input id="Button2" type="button" value="button" onclick="durdur()" /><br />
+    <span id="lblYazi"></span>
+</body>
+</html>

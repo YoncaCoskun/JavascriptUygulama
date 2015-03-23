@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script>
+
+        var askerler = [];
+        var iller = [];
+        var illerYedek = [];
+
+
+        function ilEkle() {
+
+            var dogruMu = true;
+            for (var i in slcIller) {
+                if (txtIlAdi.value == iller[i]) {
+                    dogruMu = false;
+                    alert("Aynı sehirden eklediniz,Bir sehir birden fazla kez eklenemez");
+                    break;
+                }
+            }
+            if (dogruMu) {
+                var eklenenIl = document.createElement("option");
+                eklenenIl.text = txtIlAdi.value;
+                slcIller.add(eklenenIl);
+                iller.push(txtIlAdi.value);
+            }
+            document.getElementById("txtIlAdi").value = "";
+        }
+        function askerEkle() {
+
+            var kontrol = true;
+            for (var i in slcAskerBilgisi) {
+                if (txtAskerAdiSoyadi.value == askerler[i]) {
+                    kontrol = false;
+                    alert("Aynı isim ve soyisimden asker giremezsiniz");
+                    break;
+                }
+            }
+            if (kontrol) {
+                var askerAday = document.createElement("option");
+                askerAday.text = txtAskerAdiSoyadi.value;
+                slcAskerBilgisi.add(askerAday);
+                askerler.push(txtAskerAdiSoyadi.value);
+            }
+            document.getElementById("txtAskerAdiSoyadi").value = "";
+
+        }
+
+
+
+        function dagit() {
+            if (askerler.length <= iller.length) {
+
+                for (var i in askerler) {
+
+                    var dagitim = document.createElement("option");
+                    var ilDagitim = (Math.round(Math.random() * (iller.length - 1)));
+                    dagitim.text = askerler[i] + " " + iller[ilDagitim];
+                    slcDagitim.add(dagitim);
+                    iller.splice(ilDagitim, 1);
+
+                }
+            }
+            else if (askerler.length > iller.length) {
+
+                for (var i in askerler) {
+
+                    var dagitim = document.createElement("option");
+                    var ilDagitim = (Math.round(Math.random() * (iller.length - 1)));
+                    dagitim.text = askerler[i] + " " + iller[ilDagitim];
+                    slcDagitim.add(dagitim);
+                    illerYedek[i] = iller[Dagitim];
+                    iller.splice(ilDagitim, 1)
+                    if (iller.length == 0) {
+                        for (var n in illerYedek) {
+                            iller[n] = illerYedek[n]
+                        }
+
+                    }
+                }
+            }
+        }
+        function temizle() {
+            
+            document.getElementById("slcAskerBilgisi").options.length = null;
+            document.getElementById("slcIller").options.length = null;
+            document.getElementById("slcDagitim").options.length = null;
+            
+          
+        }
+
+    </script>
+</head>
+<body>
+    <div id="AskerGiris" style="background-color:#7d91a9;">
+        <table>
+            <tr>
+                <td>
+                    Asker Bilgisi<br />
+                    <select multiple id="slcAskerBilgisi" style="width: 150px; height: 250px;"></select><br />
+                </td>
+                <td>
+                    Iller<br />
+                    <select multiple id="slcIller" style="width:150px;height:250px;"></select>
+                </td>
+                <td>
+                    Dagıtım<br />
+                    <select multiple id="slcDagitim" style="width:150px;height:250px;"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Asker Adı Soyadı<input id="txtAskerAdiSoyadi" type="text" /></td>
+
+                <td><input id="txtIlAdi" type="text" /></td>
+                <td><input id="Button1" type="button" value="Dagıtım Yap" onclick="dagit()" /></td>
+            </tr>
+
+            <tr>
+                <td><input id="btnAskerEkle" type="button" value="Asker Ekle" onclick="askerEkle()" /></td>
+                <td><input id="btnIlEkle" type="button" value="Il Ekle" onclick="ilEkle()" /></td>
+                <td><input id="Button1" type="button" value="Temizle" onclick="temizle()" /></td>
+
+
+            </tr>
+
+
+        </table>
+
+    </div>
+
+</body>
+</html>

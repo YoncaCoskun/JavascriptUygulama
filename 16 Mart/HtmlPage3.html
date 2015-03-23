@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" height="300" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        window.onload = function () { //onloadıcınde yaptıgımızda canvas resmı chrome da da gorulur
+            var resim = new Image();
+            resim.src = "images.jpg";
+
+
+
+            var tual = document.getElementById("tual");
+            var cizimAlani = tual.getContext("2d");
+            cizimAlani.drawImage(resim, 0, 0, 400, 300);
+
+            cizimAlani.font = "italic bold 25px Verdana";
+            cizimAlani.fillStyle = "brown";     //resım uzerıne yazı bu sekılde yazdırabılırız
+            cizimAlani.shadowOffsetX = -5;
+            cizimAlani.shadowOffsetY = 5;
+            cizimAlani.shadowBlur = 3;
+            cizimAlani.shadowColor = "black";
+
+            cizimAlani.fillText("Küçük Kedi", 120, 40);
+        }
+
+    </script>
+    <img src="images.jpg" width="400"height="300" />
+</body>
+</html>

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+ 
+</head>
+<body>
+    <span id="lblSaat"></span><br />
+    <table>
+        <tr>
+            <td>Müşteri Adı</td>
+            <td><input id="txtAd" type="text" /><br /></td>
+        </tr>
+        <tr>
+            <td>Müşteri Soyadı</td>
+            <td><input id="txtSoyad" type="text" /><br /></td>
+        </tr>
+        <tr>
+            <td>Telefon No</td>
+            <td><input id="txtTelefon" type="text" /><br /></td>
+        </tr>
+        <tr>
+            <td id="demo">Ödeme Tarihi</td>
+            <td><input id="txtTarih" type="date" /><br /></td>
+        </tr>
+        <tr>
+            <td>Ödeme Tutarı<br /></td>
+            <td><input id="txtTutar" type="text" /><br /></td>
+              
+        </tr>
+           
+    </table>
+    <table>
+        <tr>
+            
+            <td><input id="btn" type="button" value="Kaydet" onclick="musteriKaydet()" /></td>
+            <td><input id="Btn1" type="button" value="Göster" onclick="kayitGoster()" /></td>
+            <td><input id="Btn2" type="button" value="Temizle" onclick="temizle()" /></td>  
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <table id="tablo" border="1">
+        <thead>
+            <tr>
+                <td>Müşteri Adı</td>
+                <td>Müşteri Soyadı</td>
+                <td>Telefon No</td>
+                <td>Ödeme Tarihi</td>
+                <td>Ödeme Tutarı</td>
+            </tr>
+
+        </thead>
+        <tbody></tbody>
+
+    </table>
+
+    <script>
+        var musteriler = [];
+        var aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+        var d = new Date();
+        var gecerliGun = d.getDate();
+        var gecerliAy = d.getMonth();
+        var gecerliYil = d.getFullYear();
+        var bugun = gecerliGun + " " + aylar[gecerliAy] + " " + gecerliYil;
+        
+
+        window.onload = function () {
+            if (localStorage.musteriler != undefined) {
+                musteriler = JSON.parse(localStorage.musteriler);
+                kayitGoster();
+            }
+            setInterval(function () {
+                var tarih = new Date();
+                lblSaat.innerText = tarih.getHours() + ":" + tarih.getMinutes() + ":" + tarih.getSeconds();
+            }, 1000
+            )
+
+
+        }
+        window.onbeforeunload = function () {
+            
+            localStorage.musteriler = JSON.stringify(musteriler);
+            localStorage.clear();
+
+        }
+        //---------------------------------------------------------
+        function temizle() {
+            txtAd.value = "";
+            txtSoyad.value = "";
+            txtTarih.value = "";
+            txtTelefon.value = "";
+            txtTutar.value = "";
+
+        }
+            
+        
+        //---------------------------------------------------------------
+      
+        
+        
+       
+        
+        var musteri;
+        function musteriKaydet() {
+            var musteri = {
+                musteriAdi: txtAd.value,
+                musteriSoyadi: txtSoyad.value,
+                musteriTelefon: txtTelefon.value,
+                musteriTarih: txtTarih.value.substring(8, 10) +" "+ aylar[txtTarih.value.substring(5, 7) - 1] + " " + txtTarih.value.substring(0,4),
+                musteriTutar: txtTutar.value
+            };
+            musteriler.push(musteri);
+            
+           
+        }
+
+        
+
+        //---------------------------------------------
+       
+        function kayitGoster() {
+
+            if (tablo.children.length > 1) {
+                tablo.removeChild(tablo.children[1]);
+            }
+           
+            var alan = "";
+
+            for (var i = 0; i < musteriler.length; i++) {
+
+                alan += "<tr>";
+
+                alan += "<td>";
+                alan += (musteriler[i].musteriAdi);
+                alan += "</td>";
+                alan += "<td>";
+                alan += (musteriler[i].musteriSoyadi);
+                alan += "</td>";
+                alan += "<td>";
+                alan += (musteriler[i].musteriTelefon);
+                alan += "</td>";
+                alan += "<td>";
+                alan += (musteriler[i].musteriTarih);
+                alan += "</td>";               
+
+                if (musteriler[i].musteriTarih == bugun) {
+                    alan += "<td style='background-color:red;'>";
+                   
+                }
+                else {
+                    alan += "<td>";
+          
+                }
+                alan += (musteriler[i].musteriTutar);
+                alan += "</td>";
+                
+               
+               
+
+                alan += "</tr>";
+            }
+
+          
+            tablo.innerHTML += "<tbody>" + alan + "</tbody>";
+        }
+        //-------------------------------------
+        
+        
+
+            
+
+        
+       
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Sorular.js">        // soruları cagırdık</script>
+    <script>
+        var soruNo = 0;
+        var kullaniciCevaplari = [];
+        var timer;
+        var toplamSure;
+
+        function baslangicAyarlari() {
+            toplamSure = 30 * sorular.length;
+            lblSure.innerText = toplamSure;     // ekran acıldıgı gıbı sure gelsin diye bu kod da buraya da kondu
+
+            timer = setInterval(function () {
+                toplamSure -= 1;
+                lblSure.innerText = toplamSure;
+                if(toplamSure==0){
+                    puanHesapla();
+                }
+            }, 1000);
+            soruGoster();
+
+        }
+        function soruGoster() {
+            var gosterilecekSoru = sorular[soruNo];
+            lblSoru.innerText = gosterilecekSoru.soruMetni;
+            lblSecimA.innerText = gosterilecekSoru.cevapA;
+            lblSecimB.innerText = gosterilecekSoru.cevapB;
+            lblSecimC.innerText = gosterilecekSoru.cevapC;
+            lblSecimD.innerText = gosterilecekSoru.cevapD;
+
+            lblSoruNo.innerText = sorular.length + "/" + (soruNo + 1);
+
+            //kullanıcının verdıgı cevaplar ısaretlemek ıcın: YANİ ESKİ İSARETLEDİKLERİDE GOREBILMESI ICIN:
+            var kullaniciCevabi = kullaniciCevaplari[soruNo];
+            if (kullaniciCevabi == undefined) {
+                rdoSecimA.checked = false;
+                rdoSecimB.checked = false;
+                rdoSecimC.checked = false;
+                rdoSecimD.checked = false;
+            } else if (kullaniciCevabi == "a") {
+                rdoSecimA.checked = true;
+            }
+            else if (kullaniciCevabi == "b") {
+                rdoSecimB.checked = true;
+            }
+            else if (kullaniciCevabi == "c") {
+                rdoSecimC.checked = true;
+            }
+            else if (kullaniciCevabi == "d") {
+                rdoSecimD.checked = true;
+            }
+        }
+        function geriGit() {
+            if (soruNo > 0) {
+                soruNo--;
+                soruGoster();
+            }
+
+        }
+        function ileriGit() {
+            if (soruNo < sorular.length - 1) {// if ıcıne almamızın sebebı oncekı tusuna tıkladıgımızda orn 5 defa saga ılerı gıderken de 5 defa tıklamamız gerekıyordu bunu engelledik
+                soruNo++;
+                soruGoster();
+            } else {
+                var secim = confirm("Sorular bitti. Sınavı sonlandırmak istiyor musunuz ?");
+                if (secim) {
+                    puanHesapla();
+                }
+            }
+
+        }
+        function puanHesapla() {
+            var soruPuani = 100 / sorular.length;
+            var toplamPuan = 0;
+            for (var i in kullaniciCevaplari) {
+                var kullaniciCevabi = kullaniciCevaplari[i];
+                var dogruCevap = sorular[i].dogruCevap;
+                if (kullaniciCevabi == dogruCevap) {
+                    toplamPuan += soruPuani;
+                }
+            }
+            lblPuan.innerText = "Puaniniz : " + toplamPuan;
+            fldSorular.style.display = "none";  // soruları gizlemek icin
+            lblSure.style.display = "none";   //sureyi sorular sonunda gızlemek ıcın
+        }
+        function cevapKaydet(kullaniciCevabi) {
+            kullaniciCevaplari[soruNo] = kullaniciCevabi;
+
+        }
+
+    </script>
+</head>
+
+
+<body onload=" baslangicAyarlari()">
+    <div style="text-align:right;">
+        <span id="lblSure"></span>
+    </div>
+    <fieldset id="fldSorular">
+        <legend><span id="lblSoruNo">1</span>. Soru</legend>
+        <span id="lblSoru">İstanbul hangi yılda fethedildi?</span><br />
+        <input id="rdoSecimA" type="radio" name="1" onclick="cevapKaydet('a')" />
+        <span id="lblSecimA">1563 </span>
+        <br />
+        <input id="rdoSecimB" type="radio" name="1" onclick="cevapKaydet('b')" />
+        <span id="lblSecimB">1463 </span>
+        <br />
+        <input id="rdoSecimC" type="radio" name="1" onclick="cevapKaydet('c')" />
+        <span id="lblSecimC">1453 </span>
+        <br />
+        <input id="rdoSecimD" type="radio" name="1" onclick="cevapKaydet('d')" />
+        <span id="lblSecimD">1663 </span>
+        <br />
+        <div style="text-align:center;">
+            <input id="Button1" type="button" value="<< Önceki Soru" onclick="geriGit()" />
+
+            <input id="Button2" type="button" value="Sonraki Soru >>" onclick="ileriGit()" />
+        </div>
+
+    </fieldset>
+
+    <div style="text-align:center;font-family:Verdana; font-size:25px; color:blue; padding-top:50px;">
+        <span id="lblPuan"></span>
+
+    </div>
+
+</body>
+</html>

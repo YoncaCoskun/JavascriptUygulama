@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" style="border:solid 1px black; height:500px; width:400px;">
+        tarayıcınız desteklemiyor.
+    </canvas><br />
+    <input id="Button1" type="button" value="Çizim Yap" onclick="cizimYap()" />
+    <script>
+        function cizimYap() {
+            var tual = document.getElementById("tual");
+            var cizimAlani = tual.getContext("2d");
+
+      
+            //-----------------------Kalp Çizme-------------------------------------------
+
+           
+            cizimAlani.beginPath();
+
+           
+            cizimAlani.lineWidth = 8;
+
+
+            cizimAlani.strokeStyle = "red";
+            cizimAlani.fillStyle = "red";
+
+            
+            cizimAlani.arc(105, 150, 200, 215);
+            cizimAlani.arc(290, 150, 300, 90);
+            cizimAlani.arc(250, 30, 200, 90);
+            cizimAlani.arc(150, 30, 100, 90);
+           
+         
+           
+
+            cizimAlani.stroke();
+            cizimAlani.fill();
+
+            cizimAlani.closePath();
+        }
+    </script>
+</body>
+</html>

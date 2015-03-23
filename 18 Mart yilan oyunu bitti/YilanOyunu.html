@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tuval" width=750 height=400 style="border:1px solid black;">Tarayıcınız canvası desteklemiyor</canvas>
+    <script>
+        var tuval;
+        var cizimAlani;
+        var yonler = { saga: 39, yukari: 38, sola: 37, asagi: 40 };
+        var yilan = [];//yılan hucrelerden olusacak,kafasıda hucre vucududa hucre.
+        var gecerliYon = yonler.saga;
+        var yemler = [];
+
+        window.onload = function () {
+            tuval = document.getElementById("tuval");
+            cizimAlani = tuval.getContext("2d");
+            yilan.push(new Hucre());  //kafa hucresını olusturduk
+            for (var i = 0; i < 5; i++) { //10 tane kafa arkasına hucre olusturduk
+                var hucre = new Hucre();
+                hucre.konumlandir(yilan[i]); //oncekielemana gore konumlandırıyoruz buyuzden yilan0 ilk olarak geldi
+                yilan.push(hucre);
+            }
+            yemOlustur();
+            oyunMotoru();//yılanın otomatık hareket etmesını bu sekılde saglarız
+        }
+        function yemOlustur() {
+            var yemSayisi = 2 - yemler.length;
+            for (var i = 0; i < yemSayisi ; i++) {
+                var yem = new Hucre();
+
+                var xKoord = Math.round(Math.random() * (tuval.width - yem.r));
+                var yKoord = Math.round(Math.random() * (tuval.height - yem.r));
+                yem.x = xKoord;
+                yem.y = yKoord;
+
+                var kirmizi = Math.round(Math.random() * 255);
+                var yesil = Math.round(Math.random() * 255);
+                var mavi = Math.round(Math.random() * 255);
+
+                yem.renk = "rgb(" + kirmizi + "," + yesil + "," + mavi + ")";
+                yemler.push(yem);
+            }
+        }
+        var sayi = 0;
+        window.onkeydown = function (e) {
+            if (hataliYonMu(gecerliYon,e.keyCode)) { //geri aynı yönden dönmeyi engelledik
+                return;
+            }
+            if (sayi!=0) {
+                return;
+            }
+            sayi = 3;
+            if (e.keyCode == yonler.saga) {
+                haritaGuncelle(e.keyCode);
+                gecerliYon = e.keyCode;
+            }
+            else if (e.keyCode == yonler.sola) {
+                haritaGuncelle(e.keyCode);
+                gecerliYon = e.keyCode;
+            }
+            else if (e.keyCode == yonler.asagi) {
+                haritaGuncelle(e.keyCode);
+                gecerliYon = e.keyCode;
+            }
+            else if (e.keyCode == yonler.yukari) {
+                haritaGuncelle(e.keyCode); //yeniyonleri alıyoruz
+                gecerliYon = e.keyCode;
+            }
+            
+        }
+        function hataliYonMu(eskiYon, yeniYon) {
+            return (eskiYon == yonler.sola && yeniYon == yonler.saga) ||
+                (eskiYon == yonler.saga && yeniYon == yonler.sola) ||
+                (eskiYon == yonler.yukari && yeniYon == yonler.asagi) ||
+                (eskiYon == yonler.asagi && yeniYon == yonler.yukari);
+
+        }
+        function haritaGuncelle(yeniYon){ 
+            if (gecerliYon != yeniYon) {
+                //esıt degılse yeni yonu belırtmemız lazım butun hucrelere
+                var kafa = yilan[0];
+                var harita = { x: kafa.x, y: kafa.y, yon: yeniYon};
+              
+               // haritayı butun hucrelere aktaralım:
+               for (var i = 1; i < yilan.length; i++) {
+                   yilan[i].rota.push(harita);
+                }
+            }
+        }
+
+        function oyunMotoru() {
+            if (sayi>0) {
+                sayi--;
+            }
+            yemOlustur();
+            cizimAlani.clearRect(0, 0, tuval.width, tuval.height);
+            var kafa = yilan[0];
+            //anımasyon ıcın:
+            //kafa hucresını alalım,olusturalım
+            kafa.yon = gecerliYon;//gecelı yon belırlendı
+            kafa.hareketEt(); //hareket ettırebıldık(tuslarla)
+
+            for (var i = 0; i < yemler.length; i++) {
+                var yem=yemler[i];
+                cizimAlani.beginPath();
+                cizimAlani.fillStyle = yemler[i].renk;
+                cizimAlani.arc(yemler[i].x, yemler[i].y, yemler[i].r, 0, 360);
+                cizimAlani.fill();
+                if (Math.abs(kafa.x - yem.x) < kafa.r && Math.abs(kafa.y - yem.y)<kafa.r) {
+                    
+                    yem.konumlandir(yilan[yilan.length - 1]);
+                    yilan.push(yem); //yemi yılana ekledik
+                    yemler.splice(i,1); //yemlerden de sildirdik
+                    break;
+                }
+            }
+        
+            cizimAlani.beginPath();
+            cizimAlani.fillStyle = kafa.renk;
+            cizimAlani.arc(kafa.x,kafa.y,kafa.r,0,360);
+            cizimAlani.fill();
+
+            for (var i = 1; i < yilan.length; i++) { //kafa arkası hucrelerın vucutlarıolusturuluyor
+                yilan[i].hareketEt(); //yilanı tamamen hareket ettirme
+                cizimAlani.beginPath();
+                cizimAlani.fillStyle = yilan[i].renk;
+                cizimAlani.arc(yilan[i].x, yilan[i].y, yilan[i].r, 0, 360);
+                cizimAlani.fill();
+            }
+            
+            setTimeout(oyunMotoru,30); //bnunuda yaptıgımızda yılan dırek otomatık hareket edicek
+
+        }
+
+
+        function Hucre() {
+            this.x=100;
+            this.y=100;
+            this.r=10;
+            this.adim=5;
+            this.renk="black"; //varsayılan degerler gırıldı
+            this.rota = []; //rotaya nesne saklıyacagız. {x:300,y:600,yon:sol} gıbı nesne saklanmalı
+            this.eskiRota = [];
+
+            this.yon = yonler.saga; //baslangıcta butun hucreler saga gıdecek
+            var oncekiParca;
+
+            this.konumlandir = function (oncekiEleman) {//oncekıelemanın hemenarkasında olması gerekıyor
+                if (oncekiEleman.yon==yonler.saga) {
+                    this.x = oncekiEleman.x - (this.r + oncekiEleman.r);//kafanın arkasına bır hucre daha koyabılmemıızı saglar
+                    this.y = oncekiEleman.y;
+                }
+                else if (oncekiEleman.yon==yonler.sola) {
+                    this.x = oncekiEleman.x + (this.r + oncekiEleman.r);
+                    this.y = oncekiEleman.y;
+                }
+                else if (oncekiEleman.yon == yonler.yukari) {
+                    this.y = oncekiEleman.y + (this.r + oncekiEleman.r);
+                    this.x = oncekiEleman.x;
+                }
+                else if (oncekiEleman.yon == yonler.asagi) {
+                    this.y = oncekiEleman.y - (this.r + oncekiEleman.r);
+                    this.x = oncekiEleman.x;
+                }
+                this.rota=JSON.parse(JSON.stringify(oncekiEleman.rota)) //onceki elema2nın rotasını kopyaladık
+
+                this.yon = oncekiEleman.yon;
+                this.oncekiParca = oncekiEleman;
+            
+            }
+
+            this.solaGit = function () {
+                if (this.x+this.r < 0) {
+                    this.x = tuval.width + this.r;  //eger yilanın dısarı cıkınca karsı duvardan gelmesı ıcın bu donguyu yaptık
+                }
+                this.x -= this.adim;
+            }
+            this.sagaGit = function () {
+                if (this.x >tuval.width) {
+                    this.x = 0 - this.r;  //0 ekseninden biraz daha ıcerı gırsın sankı ordan cıkıyormus gıbı olsun ıstedık
+                }
+                this.x += this.adim;
+            }
+            this.yukariGit = function () {
+                if (this.y+this.r <0){
+                    this.y = tuval.height + this.r;
+                }
+                this.y -= this.adim;
+            }
+            this.asagiGit = function () {
+                if (this.y>tuval.height) {
+                    this.y = 0 - this.r;
+                }
+                this.y += this.adim;
+            }
+            this.hareketEt = function () {
+                if (this.yon==yonler.asagi) {
+                    this.asagiGit();
+                }
+                else if (this.yon==yonler.yukari) {
+                    this.yukariGit();
+                }
+                else if (this.yon==yonler.saga) {
+                    this.sagaGit();
+                }
+                else if (this.yon==yonler.sola) {
+                    this.solaGit();
+                }
+                this.yonHesapla();  //yon hesaplama cagırıldı
+            }
+            this.yonHesapla = function () { //her hareketimizde yön hesaplayacak
+                if (this.rota.length > 0) { //rota gırısı yapılmıssa
+                    var rt = this.rota[0];
+                    if (rt.x == this.x && rt.y == this.y && this.oncekiParca.rota.length < this.rota.length) {
+                        this.yon = rt.yon;
+                        this.rota.shift();
+                        //this.eskiRota.push(this.rota.shift());//ilk eleman silinir.cunku aynı rotaya bakmaması lazım
+                        //this.rota.push(this.oncekiParca.eskiRota.shift());
+                    }
+                }
+                                
+                
+            }
+
+
+        }
+        //------------hucre hazırlandııı---------------
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input id="Button1" type="button" value="Yaz" onclick="yaz()" />
+    <input id="Button1" type="button" value="Oku" onclick="oku()" />
+    <input id="Button1" type="button" value="Sil" onclick="sil()" />
+    <script>
+        function oku() {
+            //var gelen = localStorage.getItem("kurs");
+            var gelen = localStorage.kurs;
+            alert(gelen);
+        }
+
+        function yaz() {
+            localStorage.setItem("kurs", "Bilge Adam");
+        }
+        function sil() {
+            localStorage.removeItem("kurs");
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        
+        function sayfaYukle() {
+            var tual = document.getElementById("tual");
+            cizimAlani = tual.getContext("2d");  
+        }
+    </script>
+</head>
+<body onload="sayfaYukle()">
+    <!--------------------------------------------------CANVAS DEVAM------------------------------------------------------------------->
+
+    <canvas id="tual" width="800" height="500" style="border:1px solid #000;">
+        Tarayıcınız html 5 i desteklemiyor  
+    </canvas>
+    <div>
+        <input id="Button1" type="button" value="Kare Çiz" onclick="kareCiz()" />
+        <input id="Button2" type="button" value="Cerceve Çiz" onclick="cerceveCiz()" />
+    </div>
+    <div>
+        <input id="txtXKoord" type="text" />
+
+        <input id="txtYKoord" type="text" />
+    </div>
+    <script>
+        function kareCiz() {
+            cizimAlani.fillStyle = "#FF0000"; 
+            cizimAlani.fillRect(10, 10, 100, 100);
+        }
+        function cerceveCiz() {
+            cizimAlani.strokeStyle = "blue";  
+            cizimAlani.lineWidth = 10;   
+            cizimAlani.strokeRect(parseInt(txtXKoord.value), parseInt(txtXKoord.value), 100, 100);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input id="Button1" type="button" value="Nesne Yaz" onclick="nesneYaz()" />
+    <input id="Button1" type="button" value="Nesne Oku" onclick="nesneOku()" />
+    <script>
+        function nesneYaz() {
+            var nesne = { isim: "serkan", soyisim: "kayaduman" };
+            var strNesne = JSON.stringify(nesne);
+            localStorage.setItem("nesne", strNesne);
+        }
+        function nesneOku() {
+            var strGelen = localStorage.getItem("nesne");
+            var gelen = JSON.parse(strGelen);
+            alert(gelen.isim + " " + gelen.soyisim);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .spanlar {
+            border: 2px solid black;
+            float: left;
+            margin: 10px;
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+            font-size:70px;
+            text-align:center;
+            background-color:white;
+        }
+       
+        
+    </style>
+    <script>
+
+
+    </script>
+</head>
+<body style="background-image: url('game-background-single.jpg');">
+
+    <span class="spanlar" id="lblSlot1"></span>
+    <span class="spanlar" id="lblSlot2"></span>
+    <span class="spanlar" id="lblSlot3"></span>
+  <br /><br /><br /><br /><br /><br /><br /><br />
+    <input id="Button1" type="button" value="Başlat" style="width:200px;" onclick="ButtonClick();" />
+    <input id="Button2" type="button" value="Jeton At" style="width:200px;" onclick="getToken()" /><br /><br />
+   
+    <fieldset id="fldBahisAlani" style="background-color:white; width:400px" >
+       
+        <div id="dvSonuc" style="text-align:center;"></div>
+        <table>
+            <tr>
+                <td>Jeton Miktarı</td>
+                <td><span id="lblTokenNumber">0</span></td>
+            </tr>
+            <tr>
+                <td>Kasa Ödül</td>
+                <td><span id="lblCase">10000</span></td>
+            </tr>
+            <tr>
+                <td>Kazanılan Miktar</td>
+                <td><span id="lblWinCase">0</span></td>
+            </tr>
+        </table>
+    </fieldset>
+    
+
+    <script>
+        var randomNumbers1 = [];
+        var randomNumbers2 = [];
+        var randomNumbers3 = [];
+       
+        var size = 7;
+
+     
+      
+        function ButtonClick() {
+            if (lblTokenNumber.textContent == 0) {
+                alert("Lütfen Jeton Alınız");
+            }
+            else {
+                var myInterval1 = setInterval(random1, 100);
+                var myInterval2 = setInterval(random2, 100);
+                var myInterval3 = setInterval(random3, 100);
+
+                randomNumbers1.push(myInterval1);
+                randomNumbers2.push(myInterval2);
+                randomNumbers3.push(myInterval3);
+                function stop() {
+                    window.clearInterval(myInterval1);
+                    window.clearInterval(myInterval2);
+                    window.clearInterval(myInterval3);
+                    winOrLose();
+
+                }
+
+                setTimeout(stop, 5000);
+            }
+            
+           
+        }
+
+        function winOrLose() {
+
+            if (lblSlot1.textContent == lblSlot2.textContent && lblSlot2.textContent == lblSlot3.textContent && lblSlot1.textContent == lblSlot3.textContent) {
+                alert("Büyük Ödülü Kazandınız Tebrikler!!!");
+                lblWinCase.innerHTML = lblCase.textContent;
+            }
+            else if (lblSlot1.textContent == lblSlot2.textContent) {
+                alert("Büyük Ödülü kazanamadınız Üzgünüz ancak jetonunuzun iade ediyoruz.Şansınızı Tekrar deneyin");
+                
+            }
+            else if (lblSlot2.textContent == lblSlot3.textContent) {
+                alert("Büyük Ödülü kazanamadınız Üzgünüz ancak jetonunuzun iade ediyoruz.Şansınızı Tekrar deneyin");
+              
+            }
+            else if (lblSlot1.textContent == lblSlot3.textContent) {
+                alert("Büyük Ödülü kazanamadınız Üzgünüz ancak jetonunuzun iade ediyoruz.Şansınızı Tekrar deneyin");
+
+            }
+            else {
+                alert("Üzgünüz kaybettiniz");
+                lblTokenNumber.textContent -= 1;
+            }
+
+            
+           
+        }
+        var tokenNumber;
+
+        function getToken() {
+            tokenNumber = prompt("Kaç jeton istersiniz");
+         
+            lblTokenNumber.innerHTML = tokenNumber;
+            if (tokenNumber <= 5) {
+                ButtonClick();
+            }
+            else if(tokenNumber>5 && lblWinCase.textContent==0){
+                if (Math.round(Math.random()*4)==0) {
+                    random1 = random2;
+                    random2 = Math.round(Math.random() * 9);
+                    lblWinCase.textContent += lblCase.textContent;
+                }
+            }
+            else if(tokenNumber>5 && lblWinCase.textContent==lblCase.textContent){
+                if (Math.round(Math.random()*19==0)) {
+                    random1 = random2;
+                    random2 = Math.round(Math.random() * 9);
+                    lblWinCase.textContent += lblCase.textContent;
+                   
+                }
+            }
+        }
+
+    
+        function random1() {
+
+            for (var i = 1; i < size; i++) {
+                var random1 = Math.floor(Math.random() * 9);
+                randomNumbers1.push(random1);
+
+            }
+            lblSlot1.innerHTML = random1;
+        }
+
+        function random2() {
+
+            for (var i = 1; i < size; i++) {
+                var random2 = Math.floor(Math.random() * 9);
+                randomNumbers2.push(random2);
+            }
+            lblSlot2.innerHTML = random2;
+        }
+
+        function random3() {
+
+            for (var i = 1; i < size; i++) {
+                var random3 = Math.floor(Math.random() * 9);
+                randomNumbers3.push(random3);
+
+            }
+            lblSlot3.innerHTML = random3;
+        }
+
+        
+
+
+
+
+    </script>
+</body>
+</html>

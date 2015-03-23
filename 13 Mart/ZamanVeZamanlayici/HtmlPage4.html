@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Sorular.js"></script>
+    <script src="Sinav.js"></script>
+</head>
+<body onload="baslangicAyarlari()">
+    
+    <div style="text-align:right;">
+        <span id="lblSure"></span>
+    </div>
+    <fieldset id="fldSorular">
+        <legend><span id="lblSoruNo">1</span>. Soru</legend>
+        <span id="lblSoru">İstanbul hangi yılda fethedildi?</span>
+        <br />
+        <div id="divSecimler">
+
+        </div>
+        <br />
+        <div style="text-align:center;">
+            <input id="Button1" type="button" value="<<Önceki Soru" onclick="geriGit()" />
+            <input id="Button1" type="button" value="Sonraki Soru>>" onclick="ileriGit()" />
+        </div>
+        
+    </fieldset>
+    <div style="text-align:right;">
+        <input type="button" value="Süreyi Durdur" onclick="sureyiDurdur()" />
+        <input type="button" value="Cevabı Göster" onclick="cevapGoster()" />
+    </div>
+    <div style="text-align:center; font-family:Verdana; font-size:25px; color:blue; padding-top:50px;">
+        <span id="lblPuan"></span>
+    </div>
+</body>
+</html>

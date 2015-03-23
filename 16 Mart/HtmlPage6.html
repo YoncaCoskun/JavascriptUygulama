@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <!--ASKER DAGITMA OTOMASYON ODEVİ VAR-->
+    <!--ODEVIN SON TARİHİ AYIN 18 İ SAAT 23.00 A KADAR GONDERILMELI-->
+    <input type="button" value="Top Ekle" onclick="topEkle()" />
+    <input type="button" value="Top Temizle" onclick="topTemizle()" />
+    <br />
+    <canvas id="tual" height="600" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        function Top(x,y,xA,yA,yC) {
+            this.xKoord = x ;
+            this.yKoord = y;
+            this.xArtisi = xA;
+            this.yArtisi =yA;
+            this.yariCap = yC;
+            this.cizgiRengi ="black";
+            this.dolguRengi = "red";
+        }
+        this.renkOlustur=function() {
+            var kirmizi = Math.round(Math.random() * 255);
+            var yesil = Math.round(Math.random() * 255);
+            var mavi = Math.round(Math.random() * 255);
+
+            return "rgb("+kirmizi + "," + yesil + ","+ mavi+")"
+
+        }
+
+
+        var toplar = [];
+        var tual,cizimAlani;
+
+            window.onload = function () {
+                tual = document.getElementById("tual");
+                cizimAlani = tual.getContext("2d");
+                topGoster();
+            }
+
+            function topEkle() {
+                var top = new Top(50, 50, 1, 1, 15);
+                top.dolguRengi = renkOlustur();
+                toplar.push(top);
+
+            }
+            function topGoster() {
+                cizimAlani.clearRect(0, 0, tual.width, tual.height);  //tual tamamen  temızletme
+
+                for (var i = 0; i < toplar.length; i++) {
+                    var top = toplar[i];
+                    top.xKoord += top.xArtisi;
+                    top.yKoord += top.yArtisi;
+                
+                    top.yArtisi += 0.20;  //y tarafına dogru bır yercekımı oldugu ıcın 0.20 lık yercekımıdır
+                    if ((top.xKoord + top.yariCap) >= tual.width || (top.xKoord -top.yariCap) < 0) { //yere vurdugu zmn sekebılmesı ıcın yaptık
+                        top.xArtisi = -top.xArtisi;
+
+                    }
+                    if (top.yKoord >= tual.height || (top.yKoord- top.yariCap) < 0) {
+                        top.yArtisi = -top.yArtisi;
+                    }
+                    cizimAlani.beginPath();
+                    cizimAlani.fillStyle = top.dolguRengi;
+                    cizimAlani.strokeStyle = top.cizgiRengi;
+                    cizimAlani.lineWidth = 1;
+                    cizimAlani.arc(top.xKoord, top.yKoord, top.yariCap, 0, 2 * Math.PI);
+
+                    cizimAlani.fill();
+                    cizimAlani.stroke();
+                }
+                setTimeout("topGoster()",20); //bu sekılde strıng olarakta verılebılır
+
+            }
+            function topTemizle() {
+                toplar = [];
+
+
+            }
+
+
+    </script>
+
+</body>
+</html>

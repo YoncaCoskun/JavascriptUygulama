@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        /*#alan1:target {   target yaparak bırıncı alana tıkladıgımızda onun rengını degıstırıyoruz
+            background-color: #d8c8c8;
+        }
+        #alan2:target {
+            background-color: #d8c8c8;
+        }*/
+       
+        .alanlar:target {
+            background-color: #d8c8c8;   /*bize yukarkı ıkı targetın sonucunu aynı verır*/
+        }
+
+        /* http://www.w3schools.com/cssref/css_selectors.asp */
+    </style>
+
+
+</head>
+<body>
+    <a href="#alan1">birinci alan</a>  <a href="#alan2">ikinci alan</a>
+    <div id="alan1" class="alanlar" style="height:100px;border:solid 1px blue;">
+
+    </div>
+    <div id="alan2" class="alanlar" style="height:100px;border:solid 1px blue;">
+
+    </div>
+</body>
+</html>

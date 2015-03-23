@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        //text e gırılen deger cıft ıse sayfa post olsun tek ıse sayfa post(sayfa yuklensın) olmasın
+        function kontrolEt() {
+            if(parseInt(Text1.value) % 2 == 0){
+                return true;
+            }
+            else {
+                return false;
+        }
+
+        }
+    </script>
+</head>
+<body onload="alert('Sayfa yuklendi.');">
+    <form>
+        <input id="Text1" type="text" />
+        <input id="Submit1" type="submit" value="submit" onclick="return kontrolEt()"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,203 @@
+http://www.elearningexams.com/70-480-question-answers
+
+Skills measured in this exam are:
+Implement program flow (25%)
+Implement and manipulate document structures and objects (24%)
+Use CSS3 in applications (25%)
+Access and secure data (26%)
+
+70-480 Sample Question : 25
+
+Question : 25
+
+You are developing a web page that will be divided into three vertical sections. The main content of the site will be placed in the center section. The two outer sections will contain advertisements.You have the following requirements:The main content section must be set to two times the width of the advertising sections.The layout must be specified by using the CSS3 flexible box model.You need to ensure that the visual layout of the page meets the requirements.Which CSS3 property should you use?
+
+A. box-orient
+B. box-flex-group
+C. box-flex
+D. box-direction
+
+Answer : C
+
+70-480 Sample Question : 24
+
+Question : 24
+
+You are developing an HTML5 web application and are styling text.You need to use the text-transform CSS property.Which values are valid for the text-transform property?
+
+A. hidden
+B. blink
+C. capitalize
+D. line-through
+
+Answer : C
+
+70-480 Sample Question : 23
+
+Question : 23
+
+You are developing an HTML5 page that includes several paragraph elements.You have the following requirements:Add a drop shadow that is one inch below the text in the paragraph Set the radius of the drop shadow to five pixels You need to style the paragraphs to meet the requirements.Which CSS style should you use?
+
+A. text-shadow: 72pt 0pt 5pt
+B. text-shadow: 5px lin 0px;
+C. text-shadow: 72pt 5em 0px
+D. text-shadow: 72pt 0em 5px;
+
+Answer : B
+
+70-480 Sample Question : 22
+
+Question : 22
+
+You are developing an HTML5 web page.The appearance of the text box must change when a user moves the focus to another element on the page.You need to develop the page to respond to user action.Which line of code should you use?
+
+A. <input type=”text” onblur=”resetStyle(this);” />
+B. <input type=”text” onfocus=”resetStyle(this);” />
+C. <input type=”text” onreset=”resetStyle(this);” />
+D. <input type=”text” onselect=”resetStyle(this);” />
+
+Answer : A
+
+70-480 Sample Question : 21
+
+Question : 21
+
+You are developing a web application that consumes services from a third-party application. A web worker processes the third-party application requests in the background.A page in the application instantiates the web worker process.You need to establish two-way communications between the web worker process and the page.Which two actions will achieve this goal? (Each correct answer presents a complete solution. Choose two.)
+
+A. From the web worker, use the onconnect event handler of the main page to capture events.
+B. From the main page, use the onmessage event handler of the web worker to capture events.
+C. From the web worker, use the onmessage event handler of the main page to capture events.
+D. From the main page, use the onconnect event handler of the web worker to capture events.
+
+Answer : B,C
+
+70-480 Sample Question : 20
+
+Question : 20
+
+You need to test the value of the following variable in JavaScript.var length = “75”;A block of code must execute if the length equals 75 regardless of the data type.You need to use the statement that meets this requirement.Which lines of code should you use? (Each correct answer presents a complete solution.Choose two.)
+
+A. if (length = = = 75)
+B. if (length = = 75)
+C. if (length! = 75)
+D. if (length = = “75”)
+
+Answer : B,D
+
+70-480 Sample Question : 19
+
+Question : 19
+
+You are developing an HTML5 page that has an element with an ID of logo. The page
+includes the following HTML.
+<div>
+Logo:<br>
+<div id=”logo”>
+</div>
+</div>
+You need to move the logo element lower on the page by five pixels.
+Which lines of code should you use? (Each correct answer presents part of the solution.Choose two.)
+
+A. document.getElementById(“logo”) .style.position = “relative”;
+B. document.getElementByld(“logo”).Style.top = “5px”;
+C. document.getElementById(“logo”).style.top = “-5px”;
+D. document.getElementById(“logo”).style.position = “absolute”;
+
+Answer : A,B
+
+70-480 Sample Question : 18
+
+Question : 18
+
+You are developing a customer web form that includes the following HTML.<input id = “txtValue” /> A customer must enter a value in the text box prior to submitting the form.You need to add validation to the text box control.Which HTML should you use?
+
+A. <input id=”txtValue” type=”text” required=”required”/>
+B. <input id=”txtValue” type=”text” pattern=”[A-Za-z]{3}” />
+C. <input id=”txtValue” type=”required” />
+D. <input id=”txtValue” type=”required” autocomplete=”on” />
+
+Answer : A
+
+70-480 Sample Question : 17
+
+Question : 17
+
+You are developing a customer web form that includes the following HTML.<label id=”txtValue”X/label> Information from the web form is submitted to a web service. The web service returns thefollowing JSON object.{“Confirmation”: “1234”,”FirstName”: “John”} You need to display the Confirmation number from the JSON response in the txtValue label field.Which JavaScript code segment should you use?
+
+A. $(“#txtValue”).val = (JSONObject.Confirmation);
+B. $(“#txtValue”).val (JSONObject.Confirmation);
+C. $(“#txtValue”).text = (JSONObject.Confirmation);
+D. $(“#txtValue”).text (JSONObject.Confirmation);
+
+Answer : D
+
+70-480 Sample Question : 16
+
+Question : 16
+
+You are developing a customer contact form that will be displayed on a page of a company’s website. The page collects information about the customer.If a customer enters a value before submitting the form, it must be a valid email address.You need to ensure that the data validation requirement is met.What should you use?
+
+A. <input name=”email” type=”url”/>
+B. <input name=”email” type=”text” required=”required”/>
+C. <input name=”email” type=”text”/>
+D. <input name=”email” type=”email”/>
+
+Answer : D
+
+70-480 Sample Question : 15
+
+Question : 15
+
+You are developing an HTML5 page that has an element with an ID of logo. The page includes the following HTML.
+<div>
+Logo:<br>
+<div id=”logo”>
+</div>
+</div>
+You need to move the logo element lower on the page by five pixels. Which lines of code should you use? (Each correct answer presents part of the solution. Choose two.)
+
+A. document.getElementById(“logo”) .style.position = “relative”;
+B. document.getElementByld(“logo”).Style.top = “5px”;
+C. document.getElementById(“logo”).style.top = “-5px”;
+D. document.getElementById(“logo”).style.position = “absolute”;
+
+Answer : AB
+
+70-480 Sample Question : 14
+
+Question : 14
+
+You are creating a class named Consultant that must inherit from the Employee class. The Consultant class must modify the inherited PayEmployee method. The Employee class is defined as follows.function Employee() {}Employee.prototype.PayEmployee = function ( ){alertt’Hi there!’);}Future instances of Consultant must be created with the overridden method. You need to write the code to implement the Consultant class. Which code segments should you use? (Each correct answer presents part of the solution. Choose two.)
+
+A.  Consultant.PayEmployee=function (){alert(‘Pay Consulant’);}
+B.  Consultant.prototype.PayEmployee=function (){alert(‘Pay Consultant’);}
+C. function Consultant () {Employee.call(this);}Consultant.prototype=newEmployee();Consultant.prototype.constructor= Consultant;
+D.  function Consultant() {Employee.call(this); }Consultant.prototype.constructor = Consultant.create;
+
+Answer : BC
+
+70-480 Sample Question : 13
+
+Question : 13
+
+You are developing a customer web form that includes the following HTML.<input id?quot;txtValu”; >; A customer must enter a value in the text box prior to submitting the form.You need to add validation to the text box control.Which HTML should you use?
+
+A. <input id=”txtValue” type=”text” required=”required”/>
+B. <input id=”txtValue” type=”text” pattern=”[A-Za-z]{3}” />
+C. <input id=”txtValue” type=”required” />
+D. <input id=”txtValue” type=”required” autocomplete=”on” />
+
+Answer: A
+
+70-480 Sample Question : 12
+
+Question : 12
+
+You are developing a customer web form that includes the following HTML.<label id=”txtValue”X/label>Information from the web form is submitted to a web service. The web service returns the following JSON object.{“Confirmation”: “1234”, “FirstName”: “John”}You need to display the Confirmation number from the JSON response in the txtValue label field. Which JavaScript code segment should you use?
+
+A. $(“#txtValue”).val = (JSONObject.Confirmation);
+B. $(“#txtValue”).val(JSONObject.Confirmation);
+C. $(“#txtValue”).text = (JSONObject.Confirmation);
+D. $(“#txtValue”).text(JSONObject.Confirmation);
+
+Answer: D

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .kalem {
+            border: 1px solid black;
+            width: 80px;
+            height: 80px;
+            float: left;
+        }
+        canvas {
+        cursor:pointer;
+        
+        }
+    </style>
+</head>
+<body>
+    
+    <section>
+        -Kalem Rengi <br />
+        <div style=" background-color: red;"class="kalem" onclick="renkSec('#ff0000')">
+            <img src="kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: green;" class="kalem" onclick="renkSec('#00ff00')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: blue;" class="kalem" onclick="renkSec('#0000ff')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+       
+    </section>
+    <section> 
+        Yazi Rengi<br />
+        <input id="btnRenk" type="color" />
+
+        <form oninput="degerDegisimi()">            
+              Yazı Kalınlığı<br />
+            <input id="btnYaziKalinligi" type="range" max="10" min="1" />
+            <span id="lblBoyut"></span>
+        </form>
+       
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <canvas id="tuval" width=750 height=400 style="border:1px solid black;">Tarayıcınız canvası desteklemiyor</canvas>
+    <script>
+        function degerDegisimi() {
+            lblBoyut.innerHTML = btnYaziKalinligi.value;
+
+        }
+        var tuval;
+        var cizimAlani;
+        var cizimeBaslandiMi = false;
+
+        window.onload = function () {
+            btnRenk = document.getElementById("btnRenk");
+            tuval = document.getElementById("tuval");
+            cizimAlani = tuval.getContext("2d");
+            tuval.onmousemove = ciz; //mouse u hareket ettırdıgı zaman
+            tuval.onmousedown = cizimeBasla;  //mouse bastıgı zaman yapıcak
+            tuval.onmouseup = cizimiBitir;  // mouse tıklamayı bıtırdıgı zaman
+            tuval.onmouseout = cizimiBitir;  //cizimin canvas dısına tasmasını engelledik
+            degerDegisimi(); //acılır acılmaz gelsın
+            }
+        function cizimiBitir(){
+            cizimeBaslandiMi = false;
+        
+        
+        }
+        function cizimeBasla(tus) {
+            if (tus.button == 0) { //sadece 0. butona bastıgımız zaman sadece sol tusa basınca calısıcak
+                cizimAlani.strokeStyle = btnRenk.value;
+                cizimAlani.lineWidth = btnYaziKalinligi.value;
+
+                cizimeBaslandiMi = true;
+                cizimAlani.beginPath();
+             
+
+            }
+            else
+                alert("sag tus yasak");
+           
+        }
+
+        function ciz(e) { //eventargument in kısası e dir
+            if (cizimeBaslandiMi) {
+                
+                var xKoord = e.pageX - tuval.offsetLeft;
+                var yKoord = e.pageY - tuval.offsetTop;
+                cizimAlani.lineTo(xKoord, yKoord);
+                cizimAlani.stroke();
+            }
+
+        }
+        function renkSec(renk) {         
+            btnRenk.value = renk;
+           
+            
+        }
+
+    </script>
+</body>
+</html>

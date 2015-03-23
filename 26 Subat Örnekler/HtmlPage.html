@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            //yorum satırı
+            //document.write("Hello World<br/>");
+            console.warn('burası konsol ekranıdır.')//tek ve cıft tırnak farketmıyor ve noktalı vırgulde farketmıyor.
+            //alert('Bilge Adam');  pop up olarak verır
+            //window.close();   browseri direk erısmek ıstıyorsak
+            //----------------------------------------
+            //-----------Veri Tipleri----------------------------
+            //char:string diye geciyor
+            //int: int diye bulunuyor
+            //float: float aynı
+            //bit:  boolean
+            //decimal: double yada number olarak geciyor
+            //--------------------------------Object--------------------------------
+            //-----------------------------------------------------------------------
+            //declare @isim tipi=degeri ------>var isim =deger
+
+            var adim = 'Yonca';
+            var yasim = 22;
+            adim = 50;
+            document.write(adim + "<br/>");
+            //-----------------------------------------------------------------------
+            var garip = 3 > 5; //false
+            garip = false;
+
+            var acayip = 123e5;//123*10 ustu 5
+            //-------------------------------------------------------------------------
+            //lutfen dogum yılınızı bır degıskende saklayınız ve ekranda gosterınız
+            var dogumYili = 1992;
+            document.write('benim dogum yılım' + '' + dogumYili + '' + 'dir');
+            //--------------------------------------------------------------------------------------
+            //lutfen memleketinizi bir degiskende tutunuz.
+            var memleket = 'Tekirdağ';
+            document.write('Benim memleketim' + memleket + "'dir <br/>");
+            //----------------------------------------------------------------------------------
+            //--------------------------Aritmatik Operatörler----------------------------------
+            //+     -       *       /       %
+            //+=    -=      *=      /=      %=
+            //--------------------------------------------------------------------------------
+            var vizePuani = 45;
+            var finalPuani = 65;
+            //yıl sonu ortalamasını hesaplayınız
+            var Ortalama = (vizePuani + finalPuani) / 2
+            document.write(Ortalama+"<br/>");
+            //----------------------------------------------------------------------------------
+            var dogumTarihi = 1955;
+            //yukarıdakı kısının kac gun yasadıgını hesaplayınız
+            //1 yıl 365 gun den hesapla
+            var yasadıgıGun = ((2015 - 1955) * 365);
+            document.write(yasadıgıGun + "<br/>");
+            //-------------------------------------------------------------------------------------------
+            var isSuresi = 69;//saat
+            //saat 00:00 da ise baslayan bir calısan isi saat kacta bitirir?
+           
+            var isBitisSaati = isSuresi % 24 +':00';
+            document.write(isBitisSaati+"<br/>");
+            //----------------------------------------------------------------------------------
+            var sayi = 45;
+            //yukarıdakı degıskenın degerıne 15 daha ekleyınız
+            //sayi = sayi + 15;
+            //document.write(sayi);
+            sayi %= 5;
+            document.write(sayi+"<br/>");
+            //--------------------------------------------------------------------------------------------
+            // yukarıdakı sayı degıskenının ustune bir ekleyiniz
+            sayi++;
+            document.write(sayi + "<br/>");
+            //----------------------------------------------------------------------------------------
+            //-----------------------------------------------------------------------------------------
+            var numara = "12";
+            var sayi = "45";
+            var toplam = parseInt(sayi) + parseInt(numara);//string i int e donusturme
+            //var yazi = sonuc.toString(); //--int i stringe donusturme
+            document.write(toplam+"<br/>");
+            //-----------------------------------------------------------------------------------------
+            var yazi = toplam.toString(2); //ikilik sayı sıstemıne donusturur
+            document.write(yazi);
+            -------------------------------------------------------------------------------------------
+
+
+
+            
+
+
+
+        </script>
+
+
+    </head>
+
+
+    <body>
+
+        <!--Merhaba Dunya-->
+
+
+    </body>
+</html>

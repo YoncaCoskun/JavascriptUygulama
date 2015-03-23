@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas><br />
+    <input id="Button1" type="button" value="Çizim Yap" onclick="cizimYap()"/>
+    <script>
+        function cizimYap() {
+            var tual = document.getElementById("tual");
+            var cizimAlani = tual.getContext("2d");
+
+            cizimAlani.beginPath();        //adrese basla
+            cizimAlani.moveTo(75, 50);     //kalemı tasır hc bı sekılde cızım yaptırmayız sadece hareket ettırırız
+            cizimAlani.lineTo(75, 100);     //cızıme baslar
+            //cizimAlani.moveTo(25, 100); lineto cızerek o noktaya gıder moveto cızmeden o noktaya gıder
+            cizimAlani.lineTo(25, 100);
+            cizimAlani.lineTo(75, 50);
+
+            cizimAlani.lineWidth = 5;
+            cizimAlani.lineCap = "butt";   // default ayarı
+            cizimAlani.lineCap = "square";   //koselerdekı guzel olmayan bırlesmeyı duzeltır kareli yapar
+            cizimAlani.lineCap = "round";   //koseleri yuvarlatır
+            cizimAlani.lineJoin = "round";   //butun klenarları yuvarlatır
+
+            cizimAlani.fillStyle = "red";  //icinin rengını degıstırdık
+
+            cizimAlani.fill();
+            cizimAlani.stroke();  //bu kodu yazınca yaptıgımız gorunuyor
+        }
+    </script>
+</body>
+</html>

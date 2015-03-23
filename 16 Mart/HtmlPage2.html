@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" height="300" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        ////----------------------DAIRESEL LINEAR-----------------------------------------------------------------
+        var cizimAlani = tual.getContext("2d");
+
+
+        //ıkı renk ıcın ıkı daıre gerekıyor.
+
+        var xKoord1 = 100;
+        var yKoord1 = 100;
+        var yariCap1 = 30;
+
+        var xKoord2 = 120;
+        var yKoord2 = 120;
+        var yariCap2 = 100;
+
+        var daireselRenkGecisi = cizimAlani.createRadialGradient(xKoord1,yKoord1,yariCap1,xKoord2,yKoord2,yariCap2);
+
+
+       // daireselRenkGecisi.addColorStop(0, "white");
+        daireselRenkGecisi.addColorStop(0, "rgba(0,0,255,0.05)");  //sınavda cıkıyor(a harfı alfa oldugu bılınmelıb 0 ıle 1 arasında)
+        daireselRenkGecisi.addColorStop(0.1, "yellow");
+        daireselRenkGecisi.addColorStop(0.5, "red");
+        daireselRenkGecisi.addColorStop(1, "black");
+
+        cizimAlani.fillStyle = daireselRenkGecisi;
+        cizimAlani.fillRect(0,0,600,300);
+
+    </script>
+</body>
+</html>

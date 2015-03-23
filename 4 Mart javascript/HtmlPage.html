@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            function test() {
+                var sonuc = confirm("Hamdi beyin teklifini kabul ediyor musunuz?");
+                if (sonuc == true) {
+                    document.write("varim diyorr");
+                }
+                else {
+                    document.write("yokum diyor");
+                } 
+            }
+
+        </script>
+    </head>
+    <body>
+        <!--yildirim sembollerı bır olayı temsıl eder.-->
+        <input id="Button1" type="button" value="button"  onmouseover="alert('test')" />
+        <input id="Button1" type="button" value="button" onclick="test()" />  
+
+    </body>
+</html>

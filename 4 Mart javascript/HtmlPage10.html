@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            // butona basıldıgında slect1 den select 2 ye gecsınler
+
+            function verileriAktar() {
+                for (var i = 0; i < Select1.options.length;) {
+                    var yeniOption = document.createElement("option");
+                    yeniOption.text = Select1.options[i].text;
+                    Select2.add(yeniOption);
+                    Select1.remove(i);
+
+                }
+               
+               
+            }
+          
+          
+
+        </script>
+
+    </head>
+    <body>
+
+        <select id="Select1">
+            <option>Ahmet</option>
+            <option>Aydın</option>
+            <option>Tuncay</option>
+            <option>Fırat</option>
+
+
+        </select>
+
+        <select id="Select2">
+            
+
+
+        </select><br/>
+
+        <input id="Button1" type="button" value="button" onclick="verileriAktar()"/>
+    </body>
+</html>
