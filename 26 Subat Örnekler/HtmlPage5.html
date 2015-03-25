@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            //dısarıdan gırılen rakamları kıyaslayarak 
+            //eger kullanıcı 12,1,2 girmişse kıs mevsımı
+            //eger kullanıcı 3,4,5 girmisse ilk bahar
+            //eger 6,7,8 girmisse yaz
+            //eger 9,10,11 ise sonbahar yazısı gosterınız
+            var number = prompt("sayı gırınız","");
+            switch (number) {
+
+                case '12':
+                case '1':
+                case '2':
+                    document.write("kıs mevsimi");
+                    break;
+                case '3':
+                case '4':
+                case '5':
+                    document.write("ilkbahar mevsimi");
+                    break;
+                case '6':
+                case '7':
+                case '8':
+                    document.write("yaz mevsimi");
+                    break;
+                case '9':
+                case '10':
+                case '11':
+                    document.write("sonbahar mevsimi");
+                    break;
+
+                default:
+                    document.write("hatalı giris yapılmıstır");
+            }
+
+
+
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

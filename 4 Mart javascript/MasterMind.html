@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            var eskiSayilar = "";
+
+
+            function baslangicAyarlari() {
+                eskiSayilar = "";
+                sayiGetir();
+                
+
+            }
+            function sayiGetir() {
+                var sayi = Math.round(Math.random() * 9);
+                //hmtl lerınvalue su olmaz bunun ıcın innerText olarak yollarız
+                lblBilgisayarSayisi.innerText = sayi;
+                eskiSayilar += sayi;
+            }
+
+            function sayiAktar(tus) {
+                txtKullaniciSayisi.value += tus.value;
+
+
+            }
+            function geriSil() {
+                var sayi = txtKullaniciSayisi.value;
+                sayi = sayi.substr(0, sayi.length - 1);
+                txtKullaniciSayisi.value = sayi;
+            }
+            function onay() {
+                if (txtKullaniciSayisi.value == eskiSayilar) {
+                    txtKullaniciSayisi.value = "";
+                    sayiGetir();
+                }
+                else {
+                    var cevap = confirm("Oyunu kaybettiniz./n"+"Skorunuz:" + eskiSayilar.length + "Yeniden Oynamak Istermısınız");
+                    if (cevap == true) {
+                        baslangicAyarlari();
+                        txtKullaniciSayisi.value = "";
+
+                    }
+                    else {
+                        window.close();
+                    }
+                }
+
+            }
+
+        </script>
+    </head>
+    <body onload="baslangicAyarlari()">
+        <div>
+            <span id="lblBilgisayarSayisi"></span>
+
+        </div>
+        <div>
+            <input id="txtKullaniciSayisi" type="text" />
+
+        </div>
+
+        <div>
+            <input  type="button" value="1" onclick="sayiAktar(this)"/>
+            <input type="button" value="2" onclick="sayiAktar(this)" />
+            <input type="button" value="3" onclick="sayiAktar(this)" />
+
+        </div>
+
+        <div>
+            <input type="button" value="4" onclick="sayiAktar(this)" />
+            <input type="button" value="5" onclick="sayiAktar(this)" />
+            <input type="button" value="6" onclick="sayiAktar(this)" />
+
+        </div>
+
+        <div>
+            <input type="button" value="7" onclick="sayiAktar(this)" />
+            <input type="button" value="8" onclick="sayiAktar(this)" />
+            <input type="button" value="9" onclick="sayiAktar(this)" />
+
+        </div>
+        <div>
+            <input type="button" value="0" onclick="sayiAktar(this)" />
+            <input type="button" value="Geri" onclick="geriSil()"/>
+            <input type="button" value="Onay" onclick="onay()" />
+
+        </div>
+        
+    </body>
+</html>

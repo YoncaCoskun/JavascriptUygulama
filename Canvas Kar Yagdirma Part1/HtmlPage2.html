@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('2589cnt.jpg');
+            
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <figure>
+        <audio controls autoplay>
+            <source src="sarki.mp3" type="audio/mp3" />
+            <source src="sarki.ogg" type="audio/ogg" />
+        </audio>
+    </figure>
+    <script>
+        window.onload = function () {
+
+            var canvas = document.getElementById("canvas");
+            var area = canvas.getContext("2d");
+
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+
+
+            var maxSnow = 3000;
+            var particles = [];
+            for (var i = 0; i < maxSnow; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 2 + 1,
+                    d: Math.random() * maxSnow
+                })
+            }
+
+
+            function draw() {
+                area.clearRect(0, 0, w, h);
+                area.fillStyle = "rgba(255, 255, 255, 0.8)";
+                area.beginPath();
+
+                for (var i = 0; i < maxSnow; i++) {
+                    var snow = particles[i];
+                    area.moveTo(snow.x, snow.y);
+                    area.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2, true);
+                }
+                area.fill();
+                update();
+            }
+
+            var angle = 0;
+            function update() {
+                angle += 0.005;
+                for (var i = 0; i < maxSnow; i++) {
+                    var snow = particles[i];
+
+                    snow.y += Math.cos(angle + snow.d) + 1 + snow.r / 2;
+                    snow.x += Math.sin(angle) * 2;
+
+                    if (snow.x > w + 5 || snow.x < -5 || snow.y > h) {
+                        if (i % 10> 0) {
+                            particles[i] = { x: Math.random() * w, y: -5, r: snow.r, d: snow.d };
+                        }
+                        else {
+
+                            if (Math.sin(angle) > 0) {
+
+                                particles[i] = { x: -5, y: Math.random() * h, r: snow.r, d: snow.d };
+                            }
+                            else {
+
+                                particles[i] = { x: w + 5, y: Math.random() * h, r: snow.r, d: snow.d };
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            setInterval(draw,10);
+        }
+    </script>
+
+</body>
+</html>

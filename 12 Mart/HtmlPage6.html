@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        body, html,dl,dt,dd { /*browser dan gelen ayarları yoketmek ıcın(sıfırlama kodu)*/
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+        font-size:14px;
+     
+        }
+        nav ul {
+        list-style:none;
+        padding:0;
+        }
+        .navigasyon {
+            display: table; /*ul leri table gibi yanyana göstericek*/
+            margin: 1em;
+            border:1px solid #e59494;
+        }
+
+            .navigasyon > li {
+                display: inline-block;
+                border-left:1px solid #2a2e2f;
+                border-right:0px 1px 2px #0b0c0e;
+            }
+
+                .navigasyon > li:first-child {
+                    border-left: 0;
+                }
+
+                .navigasyon > li:last-child {
+                    border-left: 0;
+                }
+
+                .navigasyon > li:hover .alt-menu {
+                    border-top: 1px solid #111;
+                    left:auto;  /*// asıl bunu ekledıgımızde altmenuler gelıyor*/
+                }
+
+        .alt-menu {
+            position: absolute;
+            left:-9999px;  /*// hepsini bir satır yaptı*/
+        }
+        .navigasyon a {
+        display:block;
+        padding: .5em 2em;
+        color:#2e4cdc;
+        text-decoration:none;  /*alt cızgılerı yok ettık*/
+        background-color:#00ffff;
+        
+        }
+        .alt-menu > li {
+        border-top: solid 1px #682cea ;  /*//ıkı menu bırbırınden ayrılsın dıe ustlerıne cızgı cekılecek*/
+        width:200px;
+        }
+        .alt-menu a {
+        background-color:#ebb76d;
+        font-size:14px;
+        padding:.7em 1em;
+        
+        }
+        .navigasyon a:hover {
+         color: white;
+         box-shadow: 3px 3px 5px 6px #000;
+         -moz-box-shadow: 3px 3px 5px 6px #000;
+         -webkit-box-shadow: 3px 3px 5px 6px #000;
+
+        }
+        .navigasyon > li a:hover {
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            box-shadow: inset 0 -1px 0 0 #f15441, inset 0 -2px 0 0 #ef6c4e, inset 0 -3px 0 0 #f6825d, inset 0 -4px 0 0 #1d1e1d, inset 0 0 15px 5px #222; /*inset golgeyı ters cevırıodu*/
+            -moz-box-shadow: inset 0 -1px 0 0 #f15441, inset 0 -2px 0 0 #ef6c4e, inset 0 -3px 0 0 #f6825d, inset 0 -4px 0 0 #1d1e1d, inset 0 0 15px 5px #222;
+            -webkit-box-shadow: inset 0 -1px 0 0 #f15441 inset 0 -2px 0 0 #ef6c4e, inset 0 -3px 0 0 #f6825d, inset 0 -4px 0 0 #1d1e1d, inset 0 0 15px 5px #222;
+        }
+
+    </style>
+</head>
+<body>
+    <!--Guzel bır Menu Yapımı-->
+
+    <nav>
+        <ul class="navigasyon">
+            <li><a href="#">Hakkında</a></li>
+            <li>
+                <a href="#">Projeler</a>
+                <ul class="alt-menu">
+                    <li><a href="#">Kişisel Projeler</a></li>
+                    <li><a href="#">Özel Projeler</a></li>
+                    <li><a href="#">Öğrenci Projeleri</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Özgeçmiş</a></li>
+            <li>
+                <a href="#">Kişisel</a>
+                <ul class="alt-menu">
+                    <li><a href="#">Aile Fotoğrafları</a></li>
+                    <li><a href="#">Biyografi</a></li>
+                    
+                </ul>
+            </li>
+            <li><a href="#">İletişim</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

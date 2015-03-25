@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" style="border:solid 1px black; height:200px;">
+        tarayıcınız desteklemiyor.
+    </canvas><br />
+    <input id="Button1" type="button" value="Çizim Yap" onclick="cizimYap()" />
+    <script>
+        function cizimYap() {
+            var tual = document.getElementById("tual");
+            var cizimAlani = tual.getContext("2d");
+
+            //////------------------- YUVARLAK BENZERİ SEKILLER ICIN-----------------------
+            var x = 50;
+            var y = 50;
+            var radius = 25;
+            var startAngle = (Math.PI / 180) * 45;
+            var endAngle = Math.PI;
+            var clockwise = true;  //saat yonunun tersı
+
+            cizimAlani.beginPath();
+            cizimAlani.arc(x, y, radius, startAngle, endAngle, clockwise);  //arc=yay
+
+            cizimAlani.lineWidth = 5;
+            cizimAlani.fillStyle = "red";
+            cizimAlani.strokeStyle = "blue";
+
+            cizimAlani.stroke();
+            cizimAlani.fill();
+
+            cizimAlani.closePath();
+
+           
+        }
+    </script>
+</body>
+</html>

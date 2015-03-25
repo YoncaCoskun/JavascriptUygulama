@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+       <script>
+           var girilenler = [];
+          
+           
+               function dugmeBas() {
+                var buton = document.getElementById("Text1");
+                buton.value = "Bilge Adam";
+               }
+               function mesajGoster() {
+                   var buton = document.getElementById("Text1");
+                   alert(buton.value);
+
+               }
+               function diziyeEkle() {
+                   girilenler.push(Text1.value);
+                   Text1.value = " ";
+
+               }
+</script>
+            
+        
+    </head>
+    <body>
+        <input id="Text1" type="text"  />
+        <input id="Button1" type="button" value="button" onclick="dugmeBas()"  /><br/>
+
+        <input id="Button2" type="button" value="button" onclick="mesajGoster()"/><br />
+
+        <input id="Button3" type="button" value="button" onclick="diziyeEkle()"/><br />
+    </body>
+</html>

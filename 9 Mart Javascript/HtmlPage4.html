@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+
+            // submite bastıgımızda text ıcındekı rakam gırılecek en buyuk sayı hangısıyse onu gosterıcek
+            function enBuyukSayi() {
+                //try {
+
+                //} catch (hataIleIlgiliBilgi) {
+
+                //}
+
+
+
+                try {
+                    var enBuyukSayi = 0;
+                    var dizi = Text1.value.split("");
+                    dizi.forEach(function (item) {
+
+                        if (parseInt(item) > enBuyukSayi) {
+                            enBuyukSayi = parseInt(item);
+                        }
+                    });
+                } catch (e) {
+                    alert(e.message);  // hatanın ne oldugunu tespit etmek
+                }
+                //hata yapmıs olabılırım tekrar kontrol et !!!!!!!!!!!
+                //asagıdakı kodla aynı fakat daha kısa yazılmıs seklı ılerı  duzey kodlama
+                //for (var i in  Text1.value) {
+                    
+                //        if (parseInt(Text1.value[i]) > enBuyukSayi) {
+                //            enBuyukSayi = parseInt(Text1.value[i]);
+                //        }
+                    
+                    
+                //}
+
+                //alerti yanlıs yazmıs olsaydık alarm olsaydı ne olurdu?
+                alarm(enBuyukSayi);  //console u acıp hata alınıyor hatayı ekrana yapıstırabılıyoruz,kontrol altına alabılmek ıcın try catch yapısı kullanılır
+
+            }
+        </script>
+    </head>
+    <body>
+        <input id="Text1" type="text" />
+        <input id="Submit1" type="submit" value="submit" onclick="enBuyukSayi()" />
+    </body>
+</html>

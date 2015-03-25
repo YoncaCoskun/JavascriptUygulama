@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+    var cizimAlani;
+    function sayfaYukle() {
+    var tuval = document.getElementById("tuval");
+     cizimAlani = tuval.getContext("2d");   //kac boyutlu cızım yapıcagmızı yazıyoruz ıcıne
+    }
+    </script> 
+   
+</head>
+<body onload="sayfaYukle()">
+
+    <canvas id="tuval" width=750 height=400 style="border:1px solid black;">Tarayıcınız canvası desteklemiyor</canvas>
+    <div>
+        <input id="Button1" type="button" value="Çiz" onclick="Ciz()" />
+        <select id="Select1">
+            <option>Kare</option>
+            <option>Dikdörtgen</option>
+            <option>Üçgen</option>
+            <option>Daire</option>
+
+        </select>
+        <table>
+            <tr>
+                <td>X Koord</td>
+                <td><input id="txtXKoord" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Y Koord</td>
+                <td><input id="txtYKoord" type="text" /></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+       
+        function kareCiz() {
+            var kenar = parseInt(prompt("Lutfen kenar uzunlugu gırınız"));
+            cizimAlani.strokeStyle = "blue";  
+            cizimAlani.lineWidth = 10;  
+            cizimAlani.strokeRect(parseInt(txtXKoord.value), parseInt(txtXKoord.value),kenar, kenar);
+            
+        }
+        function dikdörtgenCiz() {
+            var kenar1 = parseInt(prompt("Lutfen dikdötgenin bir kenar uzunlugunu giriniz"));
+            var kenar2 =parseInt(prompt("Lutfen dikdötgenin diger kenar uzunlugunu giriniz"));
+            cizimAlani.strokeStyle = "red";
+            cizimAlani.lineWidth = 10;
+            cizimAlani.strokeRect( parseInt(txtXKoord.value), parseInt(txtXKoord.value),kenar1,kenar2);
+
+        }
+        function ucgenCiz() {
+           
+            var nokta3 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk x noktasını giriniz "));
+            var nokta4 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk y noktasını giriniz "));
+            var nokta5 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk x noktasını giriniz "));
+            var nokta6 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk y noktasını giriniz "));
+            cizimAlani.beginPath();        
+            cizimAlani.lineJoin = 'round';  
+            cizimAlani.lineWidth = 5;
+            cizimAlani.strokeStyle = "black";
+            cizimAlani.moveTo(parseInt(txtXKoord.value),parseInt(txtYKoord.value));      
+            cizimAlani.lineTo(nokta3, nokta4);       
+            cizimAlani.lineTo(nokta5, nokta6);
+            cizimAlani.lineTo(parseInt(txtXKoord.value), parseInt(txtYKoord.value));
+            cizimAlani.stroke();
+            cizimAlani.closePath();
+                       
+        }
+        function daireCiz() {
+            var yariCap = prompt("Yaricap giriniz");
+            cizimAlani.beginPath();
+            cizimAlani.arc(txtXKoord.value,txtYKoord.value,yariCap,0,2*Math.PI);
+            cizimAlani.fillStyle = "black";
+            cizimAlani.fill();
+
+        }
+        function Ciz() {
+            if(Select1.options[Select1.selectedIndex].text=='Kare'){
+             kareCiz();            
+            }
+            else if (Select1.options[Select1.selectedIndex].text == 'Dikdörtgen') {
+               dikdörtgenCiz();
+            
+            }
+            else if (Select1.options[Select1.selectedIndex].text == 'Üçgen') {
+               ucgenCiz();
+           
+           }
+            else
+               daireCiz();
+           
+           
+
+        }
+    </script>
+</body>
+</html>

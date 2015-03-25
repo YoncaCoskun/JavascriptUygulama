@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            var gunler = ["Pazartesi", "Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"];
+
+            function gunEkleme(){
+                for (var i = 0; i < gunler.length; i++) {
+                    var ekleme = document.createElement("option");
+                    ekleme.text = gunler[i];
+                    Select1.add(ekleme);
+               }         
+            }
+
+        </script>
+
+
+    </head>
+    <body>
+        <input id="Button1" type="button" value="button" onclick="gunEkleme()"/>
+
+        <select multiple id="Select1" style="width:100px">
+          
+
+        </select>
+    </body>
+</html>

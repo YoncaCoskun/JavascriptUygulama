@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        function hareketEttir() {
+            var hiz1 = Math.round(Math.random() * 10);
+            var solBosluk1 = parseInt(orumcek1.style.marginLeft)+hiz1;
+            orumcek1.style.marginLeft = solBosluk1 + "px";
+
+            if (solBosluk1 > 350) {
+                timerDurdur("1");
+                return;
+            }
+
+            var hiz2 = Math.round(Math.random() * 10);
+            var solBosluk2 = parseInt(orumcek2.style.marginLeft)+hiz2;
+            orumcek2.style.marginLeft = solBosluk2 + "px";
+
+            if (solBosluk2 > 350) {
+                timerDurdur("2");
+            }
+        }
+        function timerDurdur(galip) {
+            clearInterval(timer);
+            timer = undefined;
+            Button2.disabled = false;
+            odulHesapla(galip);
+            dvSonuc.innerText = galip+". Örümcek Kazandı";
+        }
+
+        var timer;
+        var kasa = 10000;
+        var bahisMiktari;
+        function yarisiBaslat() {
+            if (timer == undefined) {
+                bahisMiktari = parseFloat(txtBahisMiktari.value);
+                if (txtBahisMiktari.value == "" || bahisMiktari < 1 || kasa < bahisMiktari) {
+                    alert("Lütfen mantıklı bir bahis miktarı giriniz.");
+                    return;
+                }
+
+                if (!rdoBirinci.checked && !rdoIkinci.checked) {
+                    alert("Lütfen bir böcek seçiniz.");
+                    return;
+                }
+
+                timer = setInterval(hareketEttir, 100);
+                Button1.disabled = true;
+                
+                kasa -= bahisMiktari;
+                fldBahisAlani.disabled = true;
+            }
+            
+        }
+        function yarisiYenile() {
+            orumcek1.style.marginLeft = "0px";
+            orumcek2.style.marginLeft = "0px";
+            Button1.disabled = false;
+            Button2.disabled = true;
+            fldBahisAlani.disabled = false;
+        }
+        function odulHesapla(galip) {
+            if (rdoBirinci.checked && galip == "1") {
+                kasa += bahisMiktari * 2;
+            } else if (rdoIkinci.checked && galip == "2") {
+                kasa += bahisMiktari * 2;
+            }
+            lblKasa.innerText = kasa + " TL";
+        }
+
+    </script>
+</head>
+<body>
+    <img id="orumcek1" src="orumcek.gif" style="width:50px; height:30px; margin-left:0px;" />
+    <br />
+    <img id="orumcek2" src="orumcek.gif" style="width: 50px; height: 30px; margin-left: 0px;" />
+    <br />
+    <div style="background-color:#5bf564; width:50px; height:100px; position:absolute; top:0px; left:350px; z-index:-30">
+      
+    </div>
+    <input id="Button1" type="button" value="Başlat" onclick="yarisiBaslat()" />
+    <input id="Button2" type="button" disabled="true" value="Yarışı Yenile" onclick="yarisiYenile()" />
+    <fieldset id="fldBahisAlani">
+        <legend style="font-family:Arial;">Bahis Alanı</legend>
+        <div id="dvSonuc" style="text-align:center;"></div>
+        <table>
+            <tr>
+                <td>Kasa</td>
+                <td><span id="lblKasa">10000</span></td>
+            </tr>
+            <tr>
+                <td>Bahis Miktarı</td>
+                <td><input id="txtBahisMiktari" type="text" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="rdoBirinci" type="radio" name="1" />
+                    Birinci Böcek
+                </td>
+                <td>
+                    <input id="rdoIkinci" type="radio" name="1" />
+                    İkinci Böcek
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+
+</body>
+</html>

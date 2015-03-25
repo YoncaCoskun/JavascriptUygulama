@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            //------------------------DIZILER-------------------------------------
+            // birden fazla degerı tek bır ısım altında ram uzerınde saklayabılen yapılara dizi denir
+
+            //syntax:
+            var isim = "Ekin";
+
+            //-koltuk numarası---0           1       2       3
+            var siniftakiler = ["Elif", "Tayfun", "Yonca", isim];
+
+            //4 elemanlı bır dızı olusturduk
+            
+            document.write(siniftakiler[3] + "<br/>");
+            document.write(siniftakiler[8 - 4 * 2] + "<br/>");  //içinde matematiksel islem yapabiliriz
+
+            siniftakiler[16] = "Emre";
+            document.write(siniftakiler[16] + "<br/>");
+            document.write(siniftakiler[12] + "<br/>"); //12. deger undefined gelir
+            document.write(siniftakiler.length);  //17 elemanlı cıkar
+
+            //---------------------------------------------------------------------------------------------------------------------------
+
+            document.write(siniftakiler.pop() + "<br/>");  //kullanıyor sonrada siliyor
+            document.write(siniftakiler.length + "<br/>");
+
+            //--------------------------------------------------------------------------------------------------------------------------
+            //eger index ini bilmiyorsak:
+            siniftakiler.push("Semih" + "<br/>");//ekleme yapıyor.
+            document.write(siniftakiler.pop()); //sondaki elemanı ceker ve elemanı dızıden sıler
+            document.write(siniftakiler.length + "<br/>");  //16 gosterıcek
+
+            //----------------------------------------------------------------------------
+
+            document.write(siniftakiler.pop() + "<br/>");
+            document.write(siniftakiler.length + "<br/>"); //15 gorulur
+
+            //--------------------------------------------------------------------------------------------------------------------------
+
+            document.write(siniftakiler.shift() + "<br/>");  //shift ilk elemanı ceker ve elemanı diziden siler.
+
+            //---------------------------------------------------------------------------------------------------------------------------
+
+            siniftakiler.splice(1, 1);  //1. elemandan baslayıp bir kisiyi silmek istediginde bunu kullanabiliriz
+                                        //(yani belirli index teki elemanı sılmek)
+
+            //-------------------------------------------------------------------------------------------------------------------------
+
+
+            siniftakiler.sort();
+            document.write(siniftakiler);  //alfabetik sıraya gore dızme
+
+            //------------------------------------------------------------------------------------------------------------
+
+            siniftakiler.sort().reverse();
+            document.write(siniftakiler);  //ters alfabetik sıradan sıralamaya baslar.
+
+            //-------------------------------------------------------------------------------------------------------------------------
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

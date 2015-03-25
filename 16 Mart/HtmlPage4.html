@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="tual" height="300" width="600" style="border:solid 1px black;">
+        tarayıcınız desteklemiyor.
+    </canvas>
+    <script>
+        var tualCizici = tual.getContext("2d");
+       tualCizici.scale(2, 2); //boyutunuzu ıstedıgınız boyutta arttırabılırsınız(ÖLÇEKLENDIRME YAPAR. x yonu*2,y yonu*2 yaptık burada )
+        tualCizici.rotate((Math.PI / 180) *5); // kac derecelık acıda dondurmek ıstedıgımız radyan cınsınden.(ekranı dondurur)
+
+        tualCizici.translate(50,100);  //margin veriyor gıbı seklın x ve y koordınatını degıstrıyor
+
+        tualCizici.fillStyle = "green";
+        tualCizici.fillRect(10,10,100,100);
+       
+        
+    
+    </script>
+</body>
+</html>

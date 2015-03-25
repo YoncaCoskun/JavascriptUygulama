@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>SLIDER</title>
+        <style type="text/css">
+            #container {
+            
+            width:450px;
+            height:450px;
+            margin:20px auto;
+            position:relative;
+            
+            }
+            #img {
+            width:450px;
+            height:450px;
+            position:absolute;
+            
+            }
+            #left_arrow {
+            width:450px;
+            height:100px;
+            position:absolute;
+            left:0px;
+            top:0px;
+
+            }
+            #right_arrow {
+            width: 450px;
+            height: 100px;
+            position:absolute;
+            right:0px;
+            top:0px;
+            }
+            .left {
+            height:50px;
+            width:50px;
+            position:absolute;
+            top:170%;
+            left:0px;
+            
+            }
+            .right {
+                height: 50px;
+                width: 50px;
+                position: absolute;
+                top: 170%;
+                right: 0px;
+            }
+
+
+        </style>
+       
+    </head>
+    <body onload="slideA()">
+        <div id="container">
+            
+            <img src="slide1.jpg" id="img" />
+            <div id="left_arrow">
+                <img class="left" src="arrow-left.png" onclick="slide(-1)"/></div>
+            <div id="right_arrow">
+                <img class="right" src="arrow-right.png" onclick="slide(1)" /></div>
+        </div>
+    </body>
+</html>

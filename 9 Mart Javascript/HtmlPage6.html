@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        function kontrolEt() {
+        
+            //kangrubu degerlendırmek ıstıyorum
+            // R
+            //mutlaka text ıcınde r harfi bulunsun eger yoksa post olmasın varsa olsun
+
+            //------------------------------------------------------------------------------------------------------
+
+           // for (var i = 0; i < Text1.value.length; i++) {
+           //     if (Text1.value[i] == "r" || Text1.value[i] == "R") {
+           //         return true;
+           //     }
+           //}
+           // return false;
+
+            //-----------------------------regular expression (duzenlı ıfade)------------------------------------
+            var duzenliIfade = new RegExp();
+            var duzenIfade = /r/;  // regular exp ıfadesıdır yukarki koda bu sekıldede yazabılırız.
+            if (duzenIfade.test(Text1.value)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body onload="alert('yuklendi');">
+    <form>
+        <input id="Text1" type="text" />
+        <input id="Submit1" type="submit" value="submit" onclick="return kontrolEt()"/>
+    </form>
+</body>
+</html>

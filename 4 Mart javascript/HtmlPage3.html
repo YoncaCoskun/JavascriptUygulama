@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            function butonaTiklandi() {
+                //javascripten body taglarındaskı html nesnelerıne erısebılmek ıcın ıd lerden html nesnelerını cagırmamız lazım
+                var buton = document.getElementById("BenjaminButon"); // button1 e tıklandıgında benjamın butonu yakalamak ve rengini degistirebilmek
+                
+                //buton.style.backgroundColor="blue";
+                buton.value = "Benjamin Button";  // button1 e tıkladıgında ıkıncı buton degısır
+            }
+
+        </script>
+    </head>
+    <body>
+
+
+        <input id="Button1" type="button" value="button" onclick="butonaTiklandi()" />
+
+        <input id="BenjaminButon" type="button" value="button" />
+
+    </body>
+</html>

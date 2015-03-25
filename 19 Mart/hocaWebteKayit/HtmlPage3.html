@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <span id="lblSaat"></span><br />
+    <table>
+        <tr>
+            <td>Adınız</td>
+            <td><input id="txtAd" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Soyadınız</td>
+            <td><input id="txtSoyad" type="text" /></td>
+        </tr>
+    </table>
+    <input id="Button1" type="button" value="Kaydet" onclick="kaydet()" />
+    <br />
+
+    <select id="slcKayitlar" style="width:150px; height:200px;" multiple>
+    </select>
+    <script>
+        var kayitlar = [];
+        window.onload = function () {
+            if (localStorage.kayitlar != undefined) {
+                kayitlar = JSON.parse(localStorage.kayitlar);
+                kayitGoster();
+            }
+            setInterval(function () {
+                var tarih = new Date();
+                lblSaat.innerText = tarih.getHours() + ":" + tarih.getMinutes() + ":" + tarih.getSeconds();
+            },1000
+            )
+        }
+        window.onbeforeunload = function () {
+            localStorage.kayitlar = JSON.stringify(kayitlar);
+        }
+
+        function kayitGoster() {
+            slcKayitlar.innerHTML = "";
+            kayitlar.forEach(function (item) {
+                var optNesne = document.createElement("option");
+                optNesne.text = item.isim + " " + item.soyisim;
+                slcKayitlar.add(optNesne);
+            });
+        }
+        function kaydet() {
+            var kayit = { isim: txtAd.value, soyisim: txtSoyad.value };
+            kayitlar.push(kayit);
+            kayitGoster();
+        }
+    </script>
+</body>
+</html>

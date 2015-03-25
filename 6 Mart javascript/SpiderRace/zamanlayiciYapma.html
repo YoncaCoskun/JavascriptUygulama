@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            //bazı isleri duzenlı perıyotlarda yaptırmamız gerekir.timer kullanılması gerekır
+            var sayi = 0;
+            var zamanlayicilar=[]; //arka arkaya butona bastıgımızda hızında degısıklık oluyor bunu engellemek ıcın kaydederız
+
+            function butonClick() {
+                zamanlayicilar.push(setInterval(fonksiyon, 1000));  //zamanlayıcı olusturma
+
+                //setInterval(fonksiyon, 1000);
+                //setInterval(function(){ },1000);  lambda denıyor baska dıllerde bunlar ekstra kodlar zamanlayıcı olusturabılmek ıcın.
+
+            }
+            var fonksiyon=function yapilacakIsler() {
+                sayi++;
+                lblYazi.innerText = sayi;
+
+            }
+            function durdur() {
+                for (var i in zamanlayicilar) {
+                    clearInterval(zamanlayicilar[i]);  //butona(buton2) bastıgımızda durdurur.bastıgımızda tamamen durdurabıldık
+                }
+                
+
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <input id="Button1" type="button" value="button" onclick="butonClick()"/><br/>
+        <input id="Button2" type="button" value="button" onclick="durdur()"/><br/>
+        <span id="lblYazi"></span>
+
+    </body>
+</html>

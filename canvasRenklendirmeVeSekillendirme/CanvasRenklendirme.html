@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+
+        var cizimAlani;
+        function sayfaYukle() {
+            var tuval = document.getElementById("tuval");
+            cizimAlani = tuval.getContext("2d");
+        }
+    </script>
+    <style>
+        body {
+            background-color:#e0d3eb;
+        }
+        .kalem {
+            border: 1px solid black;
+            width: 80px;
+            height: 80px;
+            float: left;
+        }
+
+        canvas {
+            cursor: pointer;
+        }
+    </style>
+
+
+
+</head>
+<body onload="sayfaYukle()">
+    <section style="font-family:Arial;">
+        <b>Kalem Renkleri </b><br />
+        <div style=" background-color: darkgreen;" class="kalem" onclick="renkSec('#006400')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: yellowgreen;" class="kalem" onclick="renkSec('#9acd32')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: navy;" class="kalem" onclick="renkSec('#000080')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: blue;" class="kalem" onclick="renkSec('#0000ff')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: deepskyblue;" class="kalem" onclick="renkSec('#00bfff')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: deeppink;" class="kalem" onclick="renkSec('#ff1493')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: hotpink;" class="kalem" onclick="renkSec('#ff69b4')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: lightpink;" class="kalem" onclick="renkSec('#ffb6c1')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: indigo;" class="kalem" onclick="renkSec('#4b0082')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div><div style=" background-color: darkslateblue;" class="kalem" onclick="renkSec('#483d8b')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: slateblue;" class="kalem" onclick="renkSec('#6a5acd')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: yellow;" class="kalem" onclick="renkSec('#ffff00')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: orange;" class="kalem" onclick="renkSec('#ffa500')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: orangered;" class="kalem" onclick="renkSec('#ff4500')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div><div style=" background-color: red;" class="kalem" onclick="renkSec('#ff0000')">
+            <img src="kalem.png" style="width:100%;height:100%;" />
+        </div>
+        <div style=" background-color: white;" class="kalem" onclick="renkSec('#ffffff')">
+            <img src=" kalem.png" style="width:100%;height:100%;" />
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </section>
+    <section style="font-family:Arial;">
+        <b>Yazi Rengi</b><br />
+        <input id="btnRenk" type="color" />
+
+        <form oninput="degerDegisimi()" style="font-family:Arial;">
+            <b>Yazı Kalınlığı</b><br />
+            <input id="btnYaziKalinligi" type="range" max="10" min="1" />
+            <span id="lblBoyut"></span>
+        </form>
+
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <canvas id="tuval" width=1400 height=450 style="border:5px groove black;background-color:white;">Tarayıcınız canvası desteklemiyor</canvas>
+    <script>
+        function degerDegisimi() {
+            lblBoyut.innerHTML = btnYaziKalinligi.value;
+
+        }
+        var tuval;
+        var cizimAlani;
+        var cizimeBaslandiMi = false;
+
+        window.onload = function () {
+            btnRenk = document.getElementById("btnRenk");
+            tuval = document.getElementById("tuval");
+            cizimAlani = tuval.getContext("2d");
+            tuval.onmousemove = ciz; 
+            tuval.onmousedown = cizimeBasla;  
+            tuval.onmouseup = cizimiBitir;  
+            tuval.onmouseout = cizimiBitir;  
+            degerDegisimi(); 
+        }
+        function cizimiBitir() {
+            cizimeBaslandiMi = false;
+
+
+        }
+        function cizimeBasla(tus) {
+            if (tus.button == 0) { 
+                cizimAlani.strokeStyle = btnRenk.value;
+                cizimAlani.lineWidth = btnYaziKalinligi.value;
+
+                cizimeBaslandiMi = true;
+                cizimAlani.beginPath();
+
+
+            }
+            else
+                alert("sag tus yasak");
+
+        }
+
+        function ciz(e) { 
+            if (cizimeBaslandiMi) {
+
+                var xKoord = e.pageX - tuval.offsetLeft;
+                var yKoord = e.pageY - tuval.offsetTop;
+                cizimAlani.lineTo(xKoord, yKoord);
+                cizimAlani.stroke();
+            }
+
+        }
+        function renkSec(renk) {
+            btnRenk.value = renk;
+
+
+        }
+
+    </script>
+
+    <div>
+        <input id="Button1" type="button" value="Çiz" onclick="Ciz()" style="width:100px;height:20px;font-family:Arial;" />
+        <select id="Select1">
+            <option>seciniz...</option>
+            <option>Kare</option>
+            <option>Dikdörtgen</option>
+            <option>Üçgen</option>
+            <option>Daire</option>
+
+        </select>
+        <table>
+            <tr>
+                <td><b>X Koordinat:</b></td>
+                <td><input id="txtXKoord" type="text" /></td>
+            </tr>
+            <tr>
+                <td><b>Y Koordinat:</b></td>
+                <td><input id="txtYKoord" type="text" /></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+
+        function kareCiz() {
+            var kenar = parseInt(prompt("Lutfen kenar uzunlugu gırınız"));
+            cizimAlani.strokeStyle = "black";
+            cizimAlani.lineWidth = 5;
+            cizimAlani.strokeRect(parseInt(txtXKoord.value), parseInt(txtXKoord.value), kenar, kenar);
+
+        }
+        function dikdörtgenCiz() {
+            var kenar1 = parseInt(prompt("Lutfen dikdötgenin bir kenar uzunlugunu giriniz"));
+            var kenar2 = parseInt(prompt("Lutfen dikdötgenin diger kenar uzunlugunu giriniz"));
+            cizimAlani.strokeStyle = "black";
+            cizimAlani.lineWidth = 5;
+            cizimAlani.strokeRect(parseInt(txtXKoord.value), parseInt(txtXKoord.value), kenar1, kenar2);
+
+        }
+        function ucgenCiz() {
+
+            var nokta3 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk x noktasını giriniz "));
+            var nokta4 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk y noktasını giriniz "));
+            var nokta5 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk x noktasını giriniz "));
+            var nokta6 = parseInt(prompt("Lutfen birinci kenarın  bulundugu ilk y noktasını giriniz "));
+            cizimAlani.beginPath();
+            cizimAlani.lineJoin = 'round';
+            cizimAlani.lineWidth = 5;
+            cizimAlani.strokeStyle = "black";
+            cizimAlani.moveTo(parseInt(txtXKoord.value), parseInt(txtYKoord.value));
+            cizimAlani.lineTo(nokta3, nokta4);
+            cizimAlani.lineTo(nokta5, nokta6);
+            cizimAlani.lineTo(parseInt(txtXKoord.value), parseInt(txtYKoord.value));
+            cizimAlani.stroke();
+            cizimAlani.closePath();
+
+        }
+        function daireCiz() {
+            var yariCap = prompt("Yaricap giriniz");
+            cizimAlani.beginPath();
+            cizimAlani.arc(txtXKoord.value, txtYKoord.value, yariCap, 0, 2 * Math.PI);
+            cizimAlani.strokeStyle = "black";
+            cizimAlani.stroke();
+
+        }
+        function Ciz() {
+            if (Select1.options[Select1.selectedIndex].text == 'Kare') {
+                kareCiz();
+            }
+            else if (Select1.options[Select1.selectedIndex].text == 'Dikdörtgen') {
+                dikdörtgenCiz();
+
+            }
+            else if (Select1.options[Select1.selectedIndex].text == 'Üçgen') {
+                ucgenCiz();
+
+            }
+            else if (Select1.options[Select1.selectedIndex].text == 'Daire') {
+                daireCiz();
+            }
+            else
+                alert("Lütfen çizilmesini istediğiniz yapıyı seçiniz");
+
+
+
+        }
+    </script>
+</body>
+</html>
